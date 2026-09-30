@@ -12,6 +12,7 @@ import {
   SCHEDULE,
   TRIAL_WHATSAPP_LINK,
   WHATSAPP_LINK,
+  planWhatsAppLink,
 } from "../data";
 
 const base = import.meta.env.BASE_URL;
@@ -20,6 +21,7 @@ const asset = (src: string) => base + src.replace(/^\//, "");
 function HomePage() {
   const [scheduleIndex, setScheduleIndex] = useState(0);
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+  const [selectedPlan, setSelectedPlan] = useState<number | null>(null);
   const activeSchedule = SCHEDULE[scheduleIndex];
 
   return (
@@ -86,12 +88,25 @@ function HomePage() {
             </div>
 
             <div className="plans-scroll" aria-label="Planos da Betão Fight">
-              {PLANS.map((plan) => (
+              {PLANS.map((plan, index) => (
                 <article
-                  className={`plan-card${plan.featured ? " plan-card--featured" : ""}`}
+                  className={`plan-card${plan.featured ? " plan-card--featured" : ""}${selectedPlan === index ? " plan-card--selected" : ""}`}
                   key={plan.name}
+                  onClick={() => setSelectedPlan(selectedPlan === index ? null : index)}
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                      e.preventDefault();
+                      setSelectedPlan(selectedPlan === index ? null : index);
+                    }
+                  }}
+                  aria-pressed={selectedPlan === index}
                 >
                   {plan.featured && <span className="plan-card__badge">Mais flexível</span>}
+                  {selectedPlan === index && (
+                    <span className="plan-card__check" aria-hidden="true">✓</span>
+                  )}
                   <span className="plan-card__name">{plan.name}</span>
                   <strong>{plan.price}</strong>
                   <span className="plan-card__detail">{plan.detail}</span>
@@ -101,9 +116,20 @@ function HomePage() {
 
             <div className="plans-footer">
               <p>{PLAN_PAYMENT_NOTE}</p>
-              <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer" className="text-link">
-                Tirar dúvidas sobre planos →
-              </a>
+              {selectedPlan !== null ? (
+                <a
+                  href={planWhatsAppLink(PLANS[selectedPlan].name, PLANS[selectedPlan].price)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="button button--primary plans-footer__cta"
+                >
+                  Quero o plano {PLANS[selectedPlan].name} →
+                </a>
+              ) : (
+                <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer" className="text-link">
+                  Tirar dúvidas sobre planos →
+                </a>
+              )}
             </div>
           </div>
         </section>

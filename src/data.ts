@@ -22,6 +22,11 @@ export const productWhatsAppLink = (productName: string) =>
     `Olá! Vim pelo site da Betão Fight e quero conhecer os modelos disponíveis de ${productName}.`
   );
 
+export const planWhatsAppLink = (planName: string, planPrice: string) =>
+  buildWhatsAppLink(
+    `Olá! Vim pelo site da Betão Fight e tenho interesse no plano *${planName}* (${planPrice}). Gostaria de mais informações!`
+  );
+
 export const GOOGLE_MAPS_LINK =
   "https://www.google.com/maps/place/Centro+de+lutas+Bet%C3%A3o+fight/@-10.9636226,-37.0703973";
 
@@ -143,8 +148,8 @@ export const GALLERY: GalleryImage[] = [
   },
   {
     src: "/gallery-3.webp",
-    alt: "Betão treinando com aluna na academia",
-    objectPosition: "center 38%",
+    alt: "Betão com cinturões de kickboxing ao lado de parceiro de treino",
+    objectPosition: "center 20%",
   },
 ];
 
@@ -174,18 +179,6 @@ export interface ProductCategory {
 
 export const PRODUCTS: ProductCategory[] = [
   {
-    name: "Camisa de treino masculina",
-    category: "Vestuário",
-    description: "Modelos para treino com conforto e liberdade de movimento.",
-    icon: "shirt",
-  },
-  {
-    name: "Camisa de treino feminina",
-    category: "Vestuário",
-    description: "Peças femininas para treinar com conforto e mobilidade.",
-    icon: "shirt",
-  },
-  {
     name: "Luvas",
     category: "Equipamentos",
     description: "Luvas para Boxe e Kickboxing. Consulte tamanhos e modelos disponíveis.",
@@ -203,19 +196,105 @@ export const PRODUCTS: ProductCategory[] = [
     description: "Bonés para completar o visual da Betão Fight fora do treino.",
     icon: "cap",
   },
+];
+
+export interface Kit {
+  id: string;
+  name: string;
+  model: string;
+  image: string;
+  accentColor: string;
+}
+
+export const KITS: Kit[] = [
   {
-    name: "Shorts de Kickboxing",
-    category: "Vestuário",
-    description: "Modelagem leve e adequada para chutes e movimentação intensa.",
-    icon: "shorts",
+    id: "blood",
+    name: "Kit Blood",
+    model: "Blood",
+    image: "/kit-blood.webp",
+    accentColor: "#d51e2f",
   },
   {
-    name: "Shorts de Boxe",
-    category: "Vestuário",
-    description: "Shorts com mobilidade e corte pensado para o treino de Boxe.",
-    icon: "shorts",
+    id: "champions",
+    name: "Kit Champions",
+    model: "Champions",
+    image: "/kit-champions.webp",
+    accentColor: "#c9a84c",
+  },
+  {
+    id: "steel",
+    name: "Kit Steel",
+    model: "Steel",
+    image: "/kit-steel.webp",
+    accentColor: "#9a9a96",
+  },
+  {
+    id: "warrior",
+    name: "Kit Warrior",
+    model: "Warrior",
+    image: "/kit-warrior.webp",
+    accentColor: "#e84bb3",
+  },
+  {
+    id: "battle",
+    name: "Kit Battle",
+    model: "Battle",
+    image: "/kit-battle.webp",
+    accentColor: "#e03030",
   },
 ];
+
+export const KIT_PRICE = "R$ 65";
+export const KIT_DESCRIPTION = "Camiseta + shorts com design exclusivo Betão Fight. Seu treino em alta performance levado a sério.";
+
+export interface GloveKit {
+  id: string;
+  name: string;
+  color: string;
+  image: string;
+  accentColor: string;
+}
+
+export const GLOVE_KITS: GloveKit[] = [
+  {
+    id: "vermelho",
+    name: "Kit Luva Vermelho",
+    color: "Vermelho",
+    image: "/glove-kit-vermelho.png",
+    accentColor: "#d51e2f",
+  },
+  {
+    id: "rosa",
+    name: "Kit Luva Rosa",
+    color: "Rosa",
+    image: "/glove-kit-rosa.png",
+    accentColor: "#e8a0b0",
+  },
+  {
+    id: "amarelo",
+    name: "Kit Luva Amarelo",
+    color: "Amarelo",
+    image: "/glove-kit-amarelo.png",
+    accentColor: "#e0a820",
+  },
+  {
+    id: "prata",
+    name: "Kit Luva Prata",
+    color: "Prata",
+    image: "/glove-kit-prata.png",
+    accentColor: "#b0b0b0",
+  },
+  {
+    id: "dourado",
+    name: "Kit Luva Dourado",
+    color: "Dourado",
+    image: "/glove-kit-dourado.jpg",
+    accentColor: "#c9a84c",
+  },
+];
+
+export const GLOVE_KIT_PRICE = "R$ 300";
+export const GLOVE_KIT_DESCRIPTION = "Luva + Bandagem + Protetor Bucal Pretorian. Tudo que você precisa para começar a treinar.";
 
 export const FOOTER_LINKS = [
   { label: "Instagram", href: INSTAGRAM_LINK },
