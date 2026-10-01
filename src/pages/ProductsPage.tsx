@@ -1,7 +1,5 @@
 import { useState } from "react";
-import ProductIcon from "../components/ProductIcon";
 import {
-  PRODUCTS,
   KITS,
   KIT_PRICE,
   KIT_DESCRIPTION,
