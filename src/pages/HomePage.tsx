@@ -30,7 +30,7 @@ function HomePage() {
         <section className="hero" id="inicio">
           <img
             className="hero__image"
-            src={asset("/logo-betao.jpeg")}
+            src={asset("/hero-bg.webp")}
             alt="Fachada do Centro de Lutas Betão Fight em Aracaju"
             loading="eager"
           />

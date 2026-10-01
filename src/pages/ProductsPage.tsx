@@ -63,12 +63,9 @@ function ProductsPage() {
                 "--accent": currentKit.accentColor,
               } as React.CSSProperties}
             >
-              <div
-                className="kit-carousel__track"
-                style={{ transform: `translateX(-${activeKit * 100}%)` }}
-              >
-                {KITS.map((kit) => (
-                  <div className="kit-carousel__slide" key={kit.id}>
+              <div className="kit-carousel__track">
+                {KITS.map((kit, index) => (
+                  <div className={`kit-carousel__slide${index === activeKit ? " kit-carousel__slide--active" : ""}`} key={kit.id}>
                     <img
                       src={asset(kit.image)}
                       alt={`${kit.name} — Camiseta e Shorts`}
@@ -103,11 +100,13 @@ function ProductsPage() {
 
             {/* Info below carousel */}
             <div className="kit-carousel__info">
-              <span className="kit-carousel__model" style={{ color: currentKit.accentColor }}>
-                Modelo
-              </span>
-              <h3 className="kit-carousel__name">{currentKit.model}</h3>
-              <p className="kit-carousel__desc">{KIT_DESCRIPTION}</p>
+              <div className="kit-carousel__info-block" key={currentKit.id}>
+                <span className="kit-carousel__model" style={{ color: currentKit.accentColor }}>
+                  Modelo
+                </span>
+                <h3 className="kit-carousel__name">{currentKit.model}</h3>
+                <p className="kit-carousel__desc">{KIT_DESCRIPTION}</p>
+              </div>
 
               {/* Dots */}
               <div className="kit-carousel__dots">
@@ -159,12 +158,9 @@ function ProductsPage() {
                 "--accent": currentGloveKit.accentColor,
               } as React.CSSProperties}
             >
-              <div
-                className="kit-carousel__track"
-                style={{ transform: `translateX(-${activeGloveKit * 100}%)` }}
-              >
-                {GLOVE_KITS.map((kit) => (
-                  <div className="kit-carousel__slide" key={kit.id}>
+              <div className="kit-carousel__track">
+                {GLOVE_KITS.map((kit, index) => (
+                  <div className={`kit-carousel__slide${index === activeGloveKit ? " kit-carousel__slide--active" : ""}`} key={kit.id}>
                     <img
                       src={asset(kit.image)}
                       alt={`Kit Luva, Bandagem e Protetor Bucal — ${kit.color}`}
@@ -197,11 +193,13 @@ function ProductsPage() {
             </div>
 
             <div className="kit-carousel__info">
-              <span className="kit-carousel__model" style={{ color: currentGloveKit.accentColor }}>
-                Cor
-              </span>
-              <h3 className="kit-carousel__name">{currentGloveKit.color}</h3>
-              <p className="kit-carousel__desc">{GLOVE_KIT_DESCRIPTION}</p>
+              <div className="kit-carousel__info-block" key={currentGloveKit.id}>
+                <span className="kit-carousel__model" style={{ color: currentGloveKit.accentColor }}>
+                  Cor
+                </span>
+                <h3 className="kit-carousel__name">{currentGloveKit.color}</h3>
+                <p className="kit-carousel__desc">{GLOVE_KIT_DESCRIPTION}</p>
+              </div>
 
               <div className="kit-carousel__dots">
                 {GLOVE_KITS.map((kit, index) => (
@@ -252,12 +250,9 @@ function ProductsPage() {
                 "--accent": currentCoreKit.accentColor,
               } as React.CSSProperties}
             >
-              <div
-                className="kit-carousel__track"
-                style={{ transform: `translateX(-${activeCoreKit * 100}%)` }}
-              >
-                {CORE_KITS.map((kit) => (
-                  <div className="kit-carousel__slide" key={kit.id}>
+              <div className="kit-carousel__track">
+                {CORE_KITS.map((kit, index) => (
+                  <div className={`kit-carousel__slide${index === activeCoreKit ? " kit-carousel__slide--active" : ""}`} key={kit.id}>
                     <img
                       src={asset(kit.image)}
                       alt={`Kit Pretorian Core — ${kit.color}`}
@@ -290,11 +285,13 @@ function ProductsPage() {
             </div>
 
             <div className="kit-carousel__info">
-              <span className="kit-carousel__model" style={{ color: currentCoreKit.accentColor }}>
-                Cor
-              </span>
-              <h3 className="kit-carousel__name">{currentCoreKit.color}</h3>
-              <p className="kit-carousel__desc">{CORE_KIT_DESCRIPTION}</p>
+              <div className="kit-carousel__info-block" key={currentCoreKit.id}>
+                <span className="kit-carousel__model" style={{ color: currentCoreKit.accentColor }}>
+                  Cor
+                </span>
+                <h3 className="kit-carousel__name">{currentCoreKit.color}</h3>
+                <p className="kit-carousel__desc">{CORE_KIT_DESCRIPTION}</p>
+              </div>
 
               <div className="kit-carousel__dots">
                 {CORE_KITS.map((kit, index) => (
