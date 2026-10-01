@@ -30,7 +30,7 @@ function HomePage() {
         <section className="hero" id="inicio">
           <img
             className="hero__image"
-            src={asset("/hero-bg.webp")}
+            src={asset("/logo-betao.jpeg")}
             alt="Fachada do Centro de Lutas Betão Fight em Aracaju"
             loading="eager"
           />
@@ -220,7 +220,39 @@ function HomePage() {
           </div>
         </section>
 
-        
+        <section className="section fachada" id="estrutura">
+          <div className="container fachada__inner">
+            <div className="fachada__copy">
+              <span className="eyebrow">Venha conhecer</span>
+              <h2>Sua evolução começa aqui</h2>
+              <p>
+                Estrutura moderna, equipamentos de ponta e um ambiente que respira luta.
+                Na Betão Fight você treina com quem entende de verdade — do iniciante ao competidor.
+              </p>
+              <div className="fachada__actions">
+                <a
+                  className="button button--primary"
+                  href={TRIAL_WHATSAPP_LINK}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Agendar aula experimental
+                </a>
+                <a className="button button--ghost" href="#localizacao">
+                  Como chegar
+                </a>
+              </div>
+            </div>
+            <div className="fachada__media">
+              <img
+                className="fachada__image"
+                src={asset("/frente-betao.jpeg")}
+                alt="Fachada do Centro de Lutas Betão Fight em Aracaju"
+                loading="lazy"
+              />
+            </div>
+          </div>
+        </section>
 
         <section className="section location" id="localizacao">
           <div className="container location__inner">

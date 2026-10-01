@@ -8,6 +8,9 @@ import {
   GLOVE_KITS,
   GLOVE_KIT_PRICE,
   GLOVE_KIT_DESCRIPTION,
+  CORE_KITS,
+  CORE_KIT_PRICE,
+  CORE_KIT_DESCRIPTION,
   productWhatsAppLink,
   WHATSAPP_LINK,
 } from "../data";
@@ -18,8 +21,10 @@ const asset = (src: string) => base + src.replace(/^\//, "");
 function ProductsPage() {
   const [activeKit, setActiveKit] = useState(0);
   const [activeGloveKit, setActiveGloveKit] = useState(0);
+  const [activeCoreKit, setActiveCoreKit] = useState(0);
   const currentKit = KITS[activeKit];
   const currentGloveKit = GLOVE_KITS[activeGloveKit];
+  const currentCoreKit = CORE_KITS[activeCoreKit];
 
   return (
     <main className="products-page" id="produtos">
@@ -140,7 +145,7 @@ function ProductsPage() {
         <div className="container">
           <div className="section-heading">
             <div>
-              <span className="eyebrow">Equipamentos Pretorian</span>
+              <span className="eyebrow">Pretorian Strike</span>
               <h2>Kit Luva + Bandagem + Protetor Bucal</h2>
             </div>
             <p className="kit-section__price">
@@ -228,46 +233,99 @@ function ProductsPage() {
         </div>
       </section>
 
-      {/* ── Other Products ── */}
-      <section className="section products-section">
+      {/* ── Pretorian Core Carousel ── */}
+      <section className="section kit-section">
         <div className="container">
           <div className="section-heading">
             <div>
-              <span className="eyebrow">Outros Produtos</span>
-              <h2>Equipamentos e acessórios</h2>
+              <span className="eyebrow">Pretorian Core</span>
+              <h2>Kit Luva + Bandagem + Protetor Bucal</h2>
             </div>
-            <p>Consulte tamanhos, cores e modelos disponíveis diretamente pelo WhatsApp.</p>
+            <p className="kit-section__price">
+              <strong>{CORE_KIT_PRICE}</strong>
+              <span>o Kit</span>
+            </p>
           </div>
 
-          <div className="products-grid">
-            {PRODUCTS.map((product) => (
-              <article className="product-card" key={product.name}>
-                <div className="product-card__visual" aria-hidden="true">
-                  <ProductIcon name={product.icon} />
-                  <span>{product.category}</span>
-                </div>
-
-                <div className="product-card__content">
-                  <div>
-                    <span className="product-card__category">{product.category}</span>
-                    <h3>{product.name}</h3>
-                    <p>{product.description}</p>
+          <div className="kit-carousel">
+            <div
+              className="kit-carousel__viewport kit-carousel__viewport--glove"
+              style={{
+                "--accent": currentCoreKit.accentColor,
+              } as React.CSSProperties}
+            >
+              <div
+                className="kit-carousel__track"
+                style={{ transform: `translateX(-${activeCoreKit * 100}%)` }}
+              >
+                {CORE_KITS.map((kit) => (
+                  <div className="kit-carousel__slide" key={kit.id}>
+                    <img
+                      src={asset(kit.image)}
+                      alt={`Kit Pretorian Core — ${kit.color}`}
+                      loading="lazy"
+                    />
                   </div>
+                ))}
+              </div>
 
-                  <a
-                    className="text-link"
-                    href={productWhatsAppLink(product.name)}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Consultar modelos →
-                  </a>
-                </div>
-              </article>
-            ))}
+              <button
+                type="button"
+                className="kit-carousel__arrow kit-carousel__arrow--prev"
+                aria-label="Kit anterior"
+                onClick={() =>
+                  setActiveCoreKit((prev) => (prev === 0 ? CORE_KITS.length - 1 : prev - 1))
+                }
+              >
+                ‹
+              </button>
+              <button
+                type="button"
+                className="kit-carousel__arrow kit-carousel__arrow--next"
+                aria-label="Próximo kit"
+                onClick={() =>
+                  setActiveCoreKit((prev) => (prev === CORE_KITS.length - 1 ? 0 : prev + 1))
+                }
+              >
+                ›
+              </button>
+            </div>
+
+            <div className="kit-carousel__info">
+              <span className="kit-carousel__model" style={{ color: currentCoreKit.accentColor }}>
+                Cor
+              </span>
+              <h3 className="kit-carousel__name">{currentCoreKit.color}</h3>
+              <p className="kit-carousel__desc">{CORE_KIT_DESCRIPTION}</p>
+
+              <div className="kit-carousel__dots">
+                {CORE_KITS.map((kit, index) => (
+                  <button
+                    type="button"
+                    key={kit.id}
+                    className={`kit-carousel__dot${index === activeCoreKit ? " kit-carousel__dot--active" : ""}`}
+                    style={{
+                      "--dot-color": kit.accentColor,
+                    } as React.CSSProperties}
+                    aria-label={`Ver ${kit.color}`}
+                    onClick={() => setActiveCoreKit(index)}
+                  />
+                ))}
+              </div>
+
+              <a
+                className="button button--primary"
+                href={productWhatsAppLink(`${currentCoreKit.name} (${CORE_KIT_PRICE})`)}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Quero esse kit →
+              </a>
+            </div>
           </div>
         </div>
       </section>
+
 
       <section className="products-cta">
         <div className="container products-cta__inner">

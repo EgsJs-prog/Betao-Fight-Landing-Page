@@ -296,6 +296,55 @@ export const GLOVE_KITS: GloveKit[] = [
 export const GLOVE_KIT_PRICE = "R$ 300";
 export const GLOVE_KIT_DESCRIPTION = "Luva + Bandagem + Protetor Bucal Pretorian. Tudo que você precisa para começar a treinar.";
 
+export interface CoreKit {
+  id: string;
+  name: string;
+  color: string;
+  image: string;
+  accentColor: string;
+}
+
+export const CORE_KITS: CoreKit[] = [
+  {
+    id: "vermelho-dourado",
+    name: "Pretorian Core Vermelho e Dourado",
+    color: "Vermelho e Dourado",
+    image: "/kit_luva_de_boxe_e_muay_thai_core_vermelha_e_dourado_pretorian_4.webp",
+    accentColor: "#d51e2f",
+  },
+  {
+    id: "azul-branco",
+    name: "Pretorian Core Azul e Branco",
+    color: "Azul e Branco",
+    image: "/kit_luva_de_boxe_e_muay_thai_core_azul_e_branco_pretorian_4.webp",
+    accentColor: "#3a7bd5",
+  },
+  {
+    id: "branco-prata",
+    name: "Pretorian Core Branco e Prata",
+    color: "Branco e Prata",
+    image: "/kit_luva_de_boxe_e_muay_thai_core_branco_e_prata_pretorian_2.webp",
+    accentColor: "#e0e0e0",
+  },
+  {
+    id: "preto-dourado",
+    name: "Pretorian Core Preto e Dourado",
+    color: "Preto e Dourado",
+    image: "/kit_luva_de_boxe_e_muay_thai_core_preto_e_dourado_pretorian_4.webp",
+    accentColor: "#c9a84c",
+  },
+  {
+    id: "preto-prata",
+    name: "Pretorian Core Preto e Prata",
+    color: "Preto e Prata",
+    image: "/kit_luva_de_boxe_e_muay_thai_core_preto_e_prata_pretorian_4.webp",
+    accentColor: "#b0b0b0",
+  },
+];
+
+export const CORE_KIT_PRICE = "R$ 300";
+export const CORE_KIT_DESCRIPTION = "Luva + Bandagem + Protetor Bucal Pretorian Core. Kit completo para Boxe e Muay Thai com qualidade profissional.";
+
 export const FOOTER_LINKS = [
   { label: "Instagram", href: INSTAGRAM_LINK },
   { label: "WhatsApp", href: WHATSAPP_LINK },

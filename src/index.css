@@ -612,6 +612,63 @@ p {
   font-weight: 600;
 }
 
+/* Fachada */
+.fachada {
+  background: var(--surface);
+}
+
+.fachada__inner {
+  display: grid;
+  gap: 32px;
+  align-items: center;
+}
+
+.fachada__copy h2 {
+  margin-bottom: 6px;
+}
+
+.fachada__copy p {
+  max-width: 480px;
+  margin-top: 14px;
+  font-size: 0.9rem;
+  line-height: 1.75;
+}
+
+.fachada__actions {
+  margin-top: 26px;
+  display: grid;
+  gap: 10px;
+}
+
+.fachada__media {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+}
+
+.fachada__media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius);
+  box-shadow: inset 0 0 60px rgba(213, 30, 47, 0.08);
+  pointer-events: none;
+}
+
+.fachada__image {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+  transition: transform 400ms ease;
+}
+
+.fachada__media:hover .fachada__image {
+  transform: scale(1.03);
+}
+
 /* Localização */
 .location {
   background: linear-gradient(135deg, #111 0%, #090909 72%);
@@ -889,6 +946,20 @@ p {
 
   .gallery-thumb img {
     aspect-ratio: auto;
+  }
+
+  .fachada__inner {
+    grid-template-columns: minmax(280px, 0.9fr) minmax(320px, 1.1fr);
+    gap: 54px;
+  }
+
+  .fachada__actions {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .fachada__image {
+    aspect-ratio: 3 / 4;
   }
 
   .personal-card {
