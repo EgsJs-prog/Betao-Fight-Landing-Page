@@ -49,6 +49,8 @@ export const MODALITIES: Modality[] = [
   { name: "Boxe", description: "Técnica, defesa, agilidade e condicionamento." },
   { name: "MMA", description: "Treino completo com diferentes bases de luta." },
   { name: "Kickboxing", description: "Combina golpes de braços e pernas com intensidade." },
+  { name: "Muay Thai", description: "A arte dos oito membros: punhos, cotovelos, joelhos e canelas." },
+  { name: "Jiu-Jítsu", description: "Domínio no solo com técnicas de finalização e controle." },
 ];
 
 export interface Plan {
