@@ -48,11 +48,11 @@ function ProductsPage() {
           <div className="section-heading">
             <div>
               <span className="eyebrow">Coleção Betão Fight</span>
-              <h2>Kits Camiseta + Shorts</h2>
+              <h2>Camisa BETÃO FIGHT</h2>
             </div>
             <p className="kit-section__price">
               <strong>{KIT_PRICE}</strong>
-              <span>o Kit</span>
+              <span>a unidade</span>
             </p>
           </div>
 
@@ -68,7 +68,7 @@ function ProductsPage() {
                   <div className={`kit-carousel__slide${index === activeKit ? " kit-carousel__slide--active" : ""}`} key={kit.id}>
                     <img
                       src={asset(kit.image)}
-                      alt={`${kit.name} — Camiseta e Shorts`}
+                      alt={`${kit.name} — Camiseta oficial`}
                       loading="lazy"
                     />
                   </div>
@@ -130,7 +130,7 @@ function ProductsPage() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Quero esse kit →
+                Quero essa camisa →
               </a>
             </div>
           </div>

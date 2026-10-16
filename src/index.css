@@ -275,33 +275,111 @@ p {
 }
 
 /* Planos */
-.plans-scroll {
-  width: calc(100% + 18px);
-  margin-right: -18px;
-  padding-right: 18px;
-  display: grid;
-  grid-auto-flow: column;
-  grid-auto-columns: minmax(152px, 43vw);
-  gap: 8px;
-  overflow-x: auto;
-  scroll-snap-type: x proximity;
-  scrollbar-width: none;
+.plans-modalities {
+  margin-bottom: 14px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 12px;
 }
 
-.plans-scroll::-webkit-scrollbar {
-  display: none;
+.plans-modalities__label {
+  color: var(--muted);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.plans-modalities ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.plans-modality {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 11px;
+  border: 1px solid var(--border);
+  border-left: 2px solid var(--red);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--text);
+  font: inherit;
+  font-size: 0.68rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 180ms ease, border-color 180ms ease, color 180ms ease, transform 180ms ease;
+}
+
+.plans-modality:hover {
+  border-color: rgba(213, 30, 47, 0.55);
+  background: rgba(213, 30, 47, 0.06);
+}
+
+.plans-modality:active {
+  transform: scale(0.96);
+}
+
+.plans-modality:focus-visible {
+  outline: 2px solid var(--red);
+  outline-offset: 2px;
+}
+
+.plans-modality--active {
+  border-color: var(--red);
+  background: var(--red);
+  color: #fff;
+}
+
+.plans-modality--active:hover {
+  background: var(--red-dark);
+}
+
+.plans-modality span {
+  font-size: 0.6rem;
+  animation: checkPop 200ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.plans-modalities__hint {
+  color: var(--muted);
+  font-size: 0.65rem;
+  font-weight: 500;
+  transition: color 200ms ease;
+}
+
+.plans-modalities__hint--max {
+  color: #ff7581;
+  font-weight: 700;
+}
+
+.plans-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-auto-rows: 1fr;
+  gap: 8px;
+}
+
+@media (max-width: 359px) {
+  .plans-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 .plan-card {
   position: relative;
-  min-height: 132px;
+  min-height: 150px;
   padding: 14px;
   border: 1px solid var(--border);
   border-radius: var(--radius);
   background: var(--background);
   display: flex;
   flex-direction: column;
-  scroll-snap-align: start;
   cursor: pointer;
   transition: border-color 200ms ease, box-shadow 200ms ease, transform 200ms ease, background 200ms ease;
   user-select: none;
@@ -372,15 +450,29 @@ p {
 
 .plan-card strong {
   margin-top: auto;
+  padding-top: 12px;
   font-family: "Oswald", sans-serif;
-  font-size: 1.55rem;
+  font-size: 1.7rem;
   line-height: 1;
+  white-space: nowrap;
 }
 
 .plan-card__detail {
-  margin-top: 4px;
+  margin-top: 6px;
+  min-height: calc(2 * 1.35em);
   color: var(--muted);
   font-size: 0.68rem;
+  line-height: 1.35;
+}
+
+.plan-card__benefit {
+  margin-top: 6px;
+  padding-top: 6px;
+  border-top: 1px solid var(--border);
+  color: #ff7581;
+  font-size: 0.66rem;
+  font-weight: 600;
+  line-height: 1.35;
 }
 
 .plans-footer {
@@ -669,6 +761,146 @@ p {
   transform: scale(1.03);
 }
 
+/* Parcerias & Patrocínios */
+.partnerships {
+  position: relative;
+  background: #0b0b0b;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  scroll-margin-top: 76px;
+}
+
+.partnerships__inner {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+}
+
+.partnerships__lead {
+  margin-top: 20px;
+  margin-bottom: 32px;
+  max-width: 520px;
+  color: rgba(244, 244, 242, 0.78);
+  font-size: 1.02rem;
+  line-height: 1.65;
+}
+
+.partnerships__list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 38px;
+  display: flex;
+  flex-direction: column;
+  max-width: 480px;
+}
+
+.partnerships__item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.partnerships__item:first-child {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.partnerships__item-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  color: var(--red);
+  flex-shrink: 0;
+}
+
+.partnerships__item-label {
+  color: var(--text);
+  font-size: 0.98rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+.partnerships__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 20px 28px;
+}
+
+.partnerships__contact {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.partnerships__contact-label {
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+}
+
+.partnerships__contact-link {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--text);
+  text-decoration: none;
+  transition: color 200ms ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.partnerships__contact-link:hover,
+.partnerships__contact-link:focus-visible {
+  color: var(--red);
+}
+
+.partnerships__visual {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.partnerships__frame {
+  position: relative;
+  width: 100%;
+  max-width: 520px;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: #111;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.45);
+}
+
+.partnerships__frame::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  box-shadow: inset 0 0 36px rgba(0, 0, 0, 0.38);
+}
+
+.partnerships__image {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  object-position: center 36%;
+  display: block;
+  filter: contrast(1.03) brightness(0.96);
+  transition: transform 500ms ease;
+}
+
+.partnerships__frame:hover .partnerships__image {
+  transform: scale(1.02);
+}
+
 /* Localização */
 .location {
   background: linear-gradient(135deg, #111 0%, #090909 72%);
@@ -893,21 +1125,37 @@ p {
     font-size: 0.8rem;
   }
 
-  .plans-scroll {
-    width: 100%;
-    margin-right: 0;
-    padding-right: 0;
-    grid-auto-columns: minmax(188px, 1fr);
+  .plans-grid {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
     gap: 10px;
   }
 
   .plan-card {
-    min-height: 148px;
+    grid-column: span 2;
+    min-height: 168px;
     padding: 18px;
   }
 
+  /* Última linha (Trimestral / Semestral) centralizada com a mesma largura */
+  .plan-card:nth-child(7) {
+    grid-column: 2 / span 2;
+  }
+
+  .plan-card:nth-child(8) {
+    grid-column: 4 / span 2;
+  }
+
   .plan-card strong {
-    font-size: 1.8rem;
+    font-size: 2rem;
+  }
+
+  .plan-card__name {
+    font-size: 0.78rem;
+  }
+
+  .plan-card__detail,
+  .plan-card__benefit {
+    font-size: 0.72rem;
   }
 
   .plans-footer {
@@ -1014,11 +1262,14 @@ p {
     font-size: 1.03rem;
   }
 
-  .plans-scroll {
-    grid-template-columns: repeat(3, 1fr);
-    grid-auto-flow: row;
-    grid-auto-columns: auto;
-    overflow: visible;
+  .plans-grid {
+    gap: 12px;
+  }
+
+  .partnerships__inner {
+    grid-template-columns: minmax(0, 1.15fr) minmax(380px, 0.85fr);
+    gap: 64px;
+    align-items: center;
   }
 }
 
@@ -1377,6 +1628,11 @@ p {
   height: auto;
   object-fit: contain;
   border-radius: 8px;
+}
+
+/* Camisas: todas as artes são 1080x1350 (4:5) — mesma caixa para todos os modelos */
+.kit-carousel__viewport:not(.kit-carousel__viewport--glove) .kit-carousel__slide img {
+  aspect-ratio: 4 / 5;
 }
 
 /* Arrows */

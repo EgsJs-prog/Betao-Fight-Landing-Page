@@ -20,6 +20,9 @@ function SiteHeader({ activePage }: SiteHeaderProps) {
           >
             Produtos
           </a>
+          <a href="#parcerias">
+            Parcerias
+          </a>
         </nav>
       </div>
     </header>

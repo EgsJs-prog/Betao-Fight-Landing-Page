@@ -22,9 +22,23 @@ export const productWhatsAppLink = (productName: string) =>
     `Olá! Vim pelo site da Betão Fight e quero conhecer os modelos disponíveis de ${productName}.`
   );
 
-export const planWhatsAppLink = (planName: string, planPrice: string) =>
+const formatModalities = (modalities: string[]) =>
+  modalities.length > 1
+    ? `${modalities.slice(0, -1).join(", ")} e ${modalities[modalities.length - 1]}`
+    : modalities[0] ?? "";
+
+export const planWhatsAppLink = (planName: string, planPrice: string, modalities: string[] = []) =>
   buildWhatsAppLink(
-    `Olá! Vim pelo site da Betão Fight e tenho interesse no plano *${planName}* (${planPrice}). Gostaria de mais informações!`
+    `Olá! Vim pelo site da Betão Fight e tenho interesse no plano *${planName}* (${planPrice})${
+      modalities.length ? ` com a(s) modalidade(s): *${formatModalities(modalities)}*` : ""
+    }. Gostaria de mais informações!`
+  );
+
+export const plansInquiryWhatsAppLink = (modalities: string[] = []) =>
+  buildWhatsAppLink(
+    modalities.length
+      ? `Olá! Vim pelo site da Betão Fight e tenho dúvidas sobre os planos para *${formatModalities(modalities)}*.`
+      : "Olá! Vim pelo site da Betão Fight e tenho dúvidas sobre os planos."
   );
 
 export const GOOGLE_MAPS_LINK =
@@ -57,19 +71,48 @@ export interface Plan {
   name: string;
   price: string;
   detail: string;
+  benefit?: string;
+  badge?: string;
   featured?: boolean;
 }
 
+/* Valores conforme a tabela de preços oficial da academia. */
 export const PLANS: Plan[] = [
+  { name: "1x por semana", price: "R$ 140", detail: "Plano mensal" },
+  { name: "2x por semana", price: "R$ 180", detail: "Plano mensal" },
   { name: "3x por semana", price: "R$ 200", detail: "Plano mensal" },
-  { name: "Livre", price: "R$ 250", detail: "Plano mensal", featured: true },
-  { name: "2 modalidades", price: "R$ 300", detail: "Plano mensal" },
-  { name: "Trimestral", price: "R$ 550", detail: "3 meses" },
-  { name: "Semestral", price: "R$ 1.000", detail: "6 meses" },
+  {
+    name: "Livre",
+    price: "R$ 250",
+    detail: "Todos os dias",
+    badge: "Mais flexível",
+    featured: true,
+  },
+  {
+    name: "Duas modalidades",
+    price: "R$ 340",
+    detail: "Escolha 2 modalidades e treine todos os dias.",
+    badge: "Mais completo",
+  },
   { name: "Diária", price: "R$ 40", detail: "Treino avulso" },
+  {
+    name: "Trimestral",
+    price: "R$ 550",
+    detail: "3 meses",
+    benefit: "Direito a treinar todos os dias",
+  },
+  {
+    name: "Semestral",
+    price: "R$ 1.000",
+    detail: "6 meses",
+    benefit: "Direito a treinar todos os dias",
+  },
 ];
 
-export const PLAN_PAYMENT_NOTE = "Pix/à vista. Pagamento no cartão possui acréscimo.";
+export const PLAN_MODALITIES = ["Boxe", "MMA", "Kickboxing", "Muay Thai", "Jiu-Jítsu"];
+
+export const PLAN_PAYMENT_NOTE =
+  "Pagamento via Pix ou à vista. Pagamento no cartão de crédito possui acréscimo da taxa.";
 
 export interface ScheduleSlot {
   time: string;
@@ -104,6 +147,7 @@ export const SCHEDULE: ScheduleGroup[] = [
     days: "Terça · Quinta",
     shortLabel: "TER · QUI",
     slots: [
+      { time: "06:15", modality: "Prof. Ivan · Boxe e Kickboxing" },
       { time: "08:00", modality: "Muay Thai · Júlia" },
       { time: "11:00", modality: "Personalizado" },
       { time: "15:00", modality: "Betão · Turmas mistas" },
@@ -170,6 +214,33 @@ export const LOCATION = {
   whatsappButton: "Falar no WhatsApp",
 } as const;
 
+export const SPONSOR_WHATSAPP_MESSAGE =
+  "Olá! Vi no site do Betão Fight Club que vocês estão abertos a parcerias e patrocínios. Gostaria de conversar sobre uma possível parceria.";
+
+export const SPONSOR_WHATSAPP_LINK = buildWhatsAppLink(SPONSOR_WHATSAPP_MESSAGE);
+
+export const SPONSOR_PHONE_DISPLAY = "+55 79 99139-9024";
+
+export interface SponsorBenefitItem {
+  id: string;
+  label: string;
+  icon: "trophy" | "share" | "handshake";
+}
+
+export const SPONSOR_SECTION = {
+  eyebrow: "Parcerias & Patrocínios",
+  title: "Sua marca junto com o Betão Fight",
+  description:
+    "Apoie o esporte, fortaleça nossa equipe e conecte sua marca com quem vive a luta todos os dias.",
+  cta: "Falar no WhatsApp →",
+  whatsappLabel: "WhatsApp para parcerias",
+  benefits: [
+    { id: "eventos", label: "Visibilidade em eventos", icon: "trophy" },
+    { id: "redes", label: "Presença nas redes", icon: "share" },
+    { id: "personalizadas", label: "Parcerias personalizadas", icon: "handshake" },
+  ] as SponsorBenefitItem[],
+} as const;
+
 export type ProductIconName = "shirt" | "glove" | "wrap" | "cap" | "shorts";
 
 export interface ProductCategory {
@@ -211,43 +282,43 @@ export interface Kit {
 export const KITS: Kit[] = [
   {
     id: "blood",
-    name: "Kit Blood",
+    name: "Camisa Blood",
     model: "Blood",
-    image: "/kit-blood.webp",
+    image: "/blood-shirt-v2.png",
     accentColor: "#d51e2f",
   },
   {
     id: "champions",
-    name: "Kit Champions",
+    name: "Camisa Champions",
     model: "Champions",
-    image: "/kit-champions.webp",
+    image: "/champions-shirt-v2.png",
     accentColor: "#c9a84c",
   },
   {
     id: "steel",
-    name: "Kit Steel",
+    name: "Camisa Steel",
     model: "Steel",
-    image: "/kit-steel.webp",
+    image: "/steel-shirt-v2.png",
     accentColor: "#9a9a96",
   },
   {
     id: "warrior",
-    name: "Kit Warrior",
+    name: "Camisa Warrior",
     model: "Warrior",
-    image: "/kit-warrior.webp",
+    image: "/warrior-shirt-v2.png",
     accentColor: "#e84bb3",
   },
   {
     id: "battle",
-    name: "Kit Battle",
+    name: "Camisa Battle",
     model: "Battle",
-    image: "/kit-battle.webp",
+    image: "/battle-shirt-v2.png",
     accentColor: "#e03030",
   },
 ];
 
 export const KIT_PRICE = "R$ 65";
-export const KIT_DESCRIPTION = "Camiseta + shorts com design exclusivo Betão Fight. Seu treino em alta performance levado a sério.";
+export const KIT_DESCRIPTION = "Camiseta oficial com design exclusivo Betão Fight. Seu treino em alta performance levado a sério.";
 
 export interface GloveKit {
   id: string;
