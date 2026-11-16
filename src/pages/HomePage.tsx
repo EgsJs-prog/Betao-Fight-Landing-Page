@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Lightbox from "../components/Lightbox";
+import TrainingVideoSection from "../components/TrainingVideoSection";
 import {
   BIO,
   GALLERY,
@@ -11,6 +12,7 @@ import {
   PLAN_MODALITIES,
   PLAN_PAYMENT_NOTE,
   SCHEDULE,
+  SPONSORS,
   SPONSOR_PHONE_DISPLAY,
   SPONSOR_SECTION,
   SPONSOR_WHATSAPP_LINK,
@@ -134,6 +136,8 @@ function HomePage() {
             </div>
           </div>
         </section>
+
+        <TrainingVideoSection />
 
         <section className="section section--surface section--dense" id="planos">
           <div className="container">
@@ -409,6 +413,28 @@ function HomePage() {
                 />
               </div>
             </div>
+          </div>
+
+          <div className="container partnerships__sponsors">
+            <div className="partnerships__sponsors-header">
+              <h3 className="partnerships__sponsors-title">{SPONSOR_SECTION.sponsorsTitle}</h3>
+              <p className="partnerships__sponsors-subtitle">{SPONSOR_SECTION.sponsorsSubtitle}</p>
+            </div>
+            <ul className="partnerships__sponsors-list" aria-label="Patrocinadores oficiais do Betão Fight Club">
+              {SPONSORS.map((sponsor) => (
+                <li
+                  className={`partnerships__sponsor-card partnerships__sponsor-card--${sponsor.id}`}
+                  key={sponsor.id}
+                >
+                  <img
+                    className="partnerships__sponsor-logo"
+                    src={asset(sponsor.logoSrc)}
+                    alt={sponsor.logoAlt}
+                    loading="lazy"
+                  />
+                </li>
+              ))}
+            </ul>
           </div>
         </section>
 

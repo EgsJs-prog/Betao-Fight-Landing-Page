@@ -1,26 +1,58 @@
+export type NavSection = "inicio" | "products" | "parcerias";
+
 interface SiteHeaderProps {
-  activePage: "home" | "products";
+  activeNav: NavSection;
+  onSelectNav: (section: NavSection) => void;
 }
 
-function SiteHeader({ activePage }: SiteHeaderProps) {
+function SiteHeader({ activeNav, onSelectNav }: SiteHeaderProps) {
   return (
     <header className="site-header">
       <div className="container site-header__inner">
-        <a className="site-brand" href="#inicio" aria-label="Ir para o início">
+        <a
+          className="site-brand"
+          href="#inicio"
+          aria-label="Ir para o início"
+          onClick={(e) => {
+            e.preventDefault();
+            onSelectNav("inicio");
+          }}
+        >
           Betão <span>Fight</span>
         </a>
 
         <nav className="site-nav" aria-label="Navegação principal">
-          <a className={activePage === "home" ? "is-active" : ""} href="#inicio">
+          <a
+            className={activeNav === "inicio" ? "is-active" : ""}
+            href="#inicio"
+            aria-current={activeNav === "inicio" ? "page" : undefined}
+            onClick={(e) => {
+              e.preventDefault();
+              onSelectNav("inicio");
+            }}
+          >
             Início
           </a>
           <a
-            className={activePage === "products" ? "is-active" : ""}
+            className={activeNav === "products" ? "is-active" : ""}
             href="#/produtos"
+            aria-current={activeNav === "products" ? "page" : undefined}
+            onClick={(e) => {
+              e.preventDefault();
+              onSelectNav("products");
+            }}
           >
             Produtos
           </a>
-          <a href="#parcerias">
+          <a
+            className={activeNav === "parcerias" ? "is-active" : ""}
+            href="#parcerias"
+            aria-current={activeNav === "parcerias" ? "page" : undefined}
+            onClick={(e) => {
+              e.preventDefault();
+              onSelectNav("parcerias");
+            }}
+          >
             Parcerias
           </a>
         </nav>

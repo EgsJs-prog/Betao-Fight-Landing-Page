@@ -901,6 +901,204 @@ p {
   transform: scale(1.02);
 }
 
+.partnerships__sponsors {
+  margin-top: 56px;
+  padding-top: 42px;
+  border-top: 1px solid var(--border);
+}
+
+.partnerships__sponsors-header {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 24px;
+}
+
+.partnerships__sponsors-title {
+  font-family: "Oswald", sans-serif;
+  font-size: clamp(1.15rem, 2.5vw, 1.35rem);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text);
+  line-height: 1.15;
+}
+
+.partnerships__sponsors-subtitle {
+  font-size: 0.86rem;
+  color: var(--muted);
+  line-height: 1.4;
+}
+
+.partnerships__sponsors-list {
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  max-width: 680px;
+}
+
+.partnerships__sponsor-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 112px;
+  padding: 22px 28px;
+  background: #121212;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 10px;
+  transition:
+    transform 220ms ease,
+    border-color 220ms ease,
+    background-color 220ms ease;
+}
+
+.partnerships__sponsor-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(255, 255, 255, 0.2);
+  background: #161616;
+}
+
+.partnerships__sponsor-logo {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+.partnerships__sponsor-card--farmacias-ze-do-bairro .partnerships__sponsor-logo {
+  height: 54px;
+  max-width: min(230px, 100%);
+}
+
+.partnerships__sponsor-card--valor .partnerships__sponsor-logo {
+  height: 60px;
+  max-width: min(195px, 100%);
+  border-radius: 4px;
+}
+
+/* Vídeo dos treinos */
+.training-video {
+  background: var(--background);
+  scroll-margin-top: 76px;
+}
+
+.training-video__inner {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 36px;
+  align-items: center;
+}
+
+.training-video__lead {
+  margin-top: 18px;
+  margin-bottom: 28px;
+  max-width: 500px;
+  color: rgba(244, 244, 242, 0.8);
+  font-size: 1rem;
+  line-height: 1.65;
+}
+
+.training-video__cta {
+  width: fit-content;
+}
+
+.training-video__media {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.training-video__frame {
+  position: relative;
+  width: 100%;
+  max-width: 320px;
+  aspect-ratio: 9 / 16;
+  background: #000;
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+
+.training-video__player {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: #000;
+  cursor: pointer;
+}
+
+.training-video__play-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.24);
+  border: 0;
+  cursor: pointer;
+  transition: background 180ms ease;
+}
+
+.training-video__play-overlay:hover,
+.training-video__play-overlay:focus-visible {
+  background: rgba(0, 0, 0, 0.36);
+}
+
+.training-video__play-circle {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: rgba(15, 15, 15, 0.84);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 3px;
+  transition: transform 180ms ease, background 180ms ease;
+}
+
+.training-video__play-overlay:hover .training-video__play-circle,
+.training-video__play-overlay:focus-visible .training-video__play-circle {
+  transform: scale(1.05);
+  background: rgba(213, 30, 47, 0.92);
+  border-color: transparent;
+}
+
+.training-video__controls {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px;
+  border-radius: 6px;
+  background: rgba(9, 9, 9, 0.74);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.training-video__control-btn {
+  width: 34px;
+  height: 34px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 0;
+  border-radius: 4px;
+  color: #f4f4f2;
+  cursor: pointer;
+  transition: background 150ms ease;
+}
+
+.training-video__control-btn:hover,
+.training-video__control-btn:focus-visible {
+  background: rgba(255, 255, 255, 0.14);
+}
+
 /* Localização */
 .location {
   background: linear-gradient(135deg, #111 0%, #090909 72%);
@@ -1077,6 +1275,35 @@ p {
   .location__actions {
     display: flex;
     flex-wrap: wrap;
+  }
+
+  .partnerships__sponsors {
+    margin-top: 64px;
+    padding-top: 48px;
+  }
+
+  .partnerships__sponsors-header {
+    margin-bottom: 28px;
+  }
+
+  .partnerships__sponsors-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+  }
+
+  .partnerships__sponsor-card {
+    min-height: 126px;
+    padding: 26px 36px;
+  }
+
+  .partnerships__sponsor-card--farmacias-ze-do-bairro .partnerships__sponsor-logo {
+    height: 58px;
+    max-width: min(248px, 100%);
+  }
+
+  .partnerships__sponsor-card--valor .partnerships__sponsor-logo {
+    height: 66px;
+    max-width: min(200px, 100%);
   }
 
   .section-heading {
@@ -1270,6 +1497,20 @@ p {
     grid-template-columns: minmax(0, 1.15fr) minmax(380px, 0.85fr);
     gap: 64px;
     align-items: center;
+  }
+
+  .training-video__inner {
+    grid-template-columns: minmax(0, 1.05fr) minmax(280px, 340px);
+    gap: 64px;
+    justify-content: space-between;
+  }
+
+  .training-video__media {
+    justify-content: flex-end;
+  }
+
+  .training-video__frame {
+    max-width: 340px;
   }
 }
 

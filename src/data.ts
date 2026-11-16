@@ -41,8 +41,7 @@ export const plansInquiryWhatsAppLink = (modalities: string[] = []) =>
       : "Olá! Vim pelo site da Betão Fight e tenho dúvidas sobre os planos."
   );
 
-export const GOOGLE_MAPS_LINK =
-  "https://www.google.com/maps/place/Centro+de+lutas+Bet%C3%A3o+fight/@-10.9636226,-37.0703973";
+export const GOOGLE_MAPS_LINK = "https://maps.app.goo.gl/qN2PJ6kE5bJzg72Z6";
 
 export const INSTAGRAM_LINK = "https://www.instagram.com/betaofight_official/";
 
@@ -227,11 +226,47 @@ export interface SponsorBenefitItem {
   icon: "trophy" | "share" | "handshake";
 }
 
+export interface Sponsor {
+  id: string;
+  name: string;
+  logoSrc: string;
+  logoAlt: string;
+  url?: string;
+}
+
+export const SPONSORS: Sponsor[] = [
+  {
+    id: "farmacias-ze-do-bairro",
+    name: "Farmácias Zé do Bairro",
+    logoSrc: "/sponsor-ze-do-bairro.png",
+    logoAlt: "Logo Farmácias Zé do Bairro",
+  },
+  {
+    id: "valor",
+    name: "Valor",
+    logoSrc: "/sponsor-valor.png",
+    logoAlt: "Logo Valor Centro de Soluções em Negócios Imobiliários",
+  },
+];
+
+export const TRAINING_VIDEO_SECTION = {
+  eyebrow: "Nossa rotina",
+  title: "O treino acontece aqui",
+  description:
+    "Mais do que treinar, é fazer parte de uma equipe. Conheça um pouco da nossa rotina e veja de perto a energia dos treinos no Betão Fight.",
+  cta: "Conheça nossos planos →",
+  videoSrc: "/treino-rotina.mp4",
+  posterSrc: "/treino-rotina-poster.jpg",
+  videoAriaLabel: "Vídeo da rotina de treinos no Betão Fight Club",
+} as const;
+
 export const SPONSOR_SECTION = {
   eyebrow: "Parcerias & Patrocínios",
   title: "Sua marca junto com o Betão Fight",
   description:
     "Apoie o esporte, fortaleça nossa equipe e conecte sua marca com quem vive a luta todos os dias.",
+  sponsorsTitle: "Quem está com a gente",
+  sponsorsSubtitle: "Marcas que apoiam o Betão Fight",
   cta: "Falar no WhatsApp →",
   whatsappLabel: "WhatsApp para parcerias",
   benefits: [
